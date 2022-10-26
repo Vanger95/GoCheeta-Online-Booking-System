@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>[[${pagetitle}]]</title>
+  <link rel = "stylesheet" type="text/css" th:href="@{\webjars\bootstrap\5.2.0\css\bootstrap.min.css}">
+</head>
+<body>
+<div class = "container-fluid text-center" >
+  <h2>[[${pagetitle}]]</h2>
+  <form th:action="@{/drivers/save}" method="Post" th:object="${driver}" style="max-width: 500px; margin:0 auto;">
+    <input type="hidden" th:field="*{driverId}">
+    <div class = "border border-secondary round p-3">
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label ">First Name:</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{firstName}" class="form-control"  placeholder="First name" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label ">Last Name:</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{lastName}" class="form-control"  placeholder="Last name" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label  class="col-sm-4 col-form-label ">contactNumber:</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{contactNumber}" class="form-control"  placeholder="Contact Number" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label  class="col-sm-4 col-form-label ">Active:</label>
+        <div class="col-sm-8">
+          <input type="checkbox" th:field="*{active}"/>
+        </div>
+      </div>
+
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary m-2">Submit</button>
+        <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+      </div>
+  </form>
+</div>
+<script type="text/javascript">
+    function cancelForm(){
+        window.location = "[[@{/drivers}]]";
+    }
+</script>
+</body>
+</html>

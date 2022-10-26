@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomerDetails</title>
+    <link rel = "stylesheet" type="text/css" th:href="@{\webjars\bootstrap\5.2.0\css\bootstrap.min.css}">
+</head>
+<body>
+<div class = "container-fluid text-center">
+    <h1>Manage Customers</h1>
+</div>
+<div class = "m-2">
+    <a class="h3" th:href="@{/customers/new}">Add New Customer</a>
+</div>
+<div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+</div>
+<table class="table table-bordered">
+    <thead class="dark">
+    <tr>
+        <th>ID</th>
+        <th>Customer First Name</th>
+        <th>Customer Last Name</th>
+        <th>Customer Address</th>
+        <th>Customer Email</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="customer : ${customerList}">
+        <tr>
+            <td>[[${customer.customerId}]]</td>
+            <td>[[${customer.firstname}]]</td>
+            <td>[[${customer.lastname}]]</td>
+            <td>[[${customer.address}]]</td>
+            <td>[[${customer.email}]]</td>
+            <td>
+                <a class = "h4 mr-3" th:href="@{'/customers/edit/' + ${customer.customerId}}">Edit</a>
+                <a class = "h4" th:href="@{'/customers/delete/' + ${customer.customerId}}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>
